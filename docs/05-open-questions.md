@@ -22,7 +22,8 @@
 * **Speed**: headless the game runs at 15 times the DS, Moon at 210
   (`11-runtime.md`); where the time goes (a busy-waiting thread, the
   cost per safe point) is not measured.
-* **Shadow polygons**: the dungeon draws them from frame 8 360; how many,
-  with which polygon IDs, and what else the field turns on (DISP3DCNT).
+* **Shadow polygons**: drawn since session 3, without the DS's rule
+  that a shadow skips pixels of its own polygon ID; whether the game's
+  shadows need it (against melonDS's pictures).
 * **4 bytes of the save** at 0xFF0C differ from melonDS's after the
   first boot: a date, a time, a checksum?

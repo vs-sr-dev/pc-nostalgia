@@ -97,3 +97,24 @@ python -m ndskit.recomp.selftest "$ROM" --cpu 9 --overlay 0 --auto --out build/v
 build/recomp/b/selftest build/recomp/selftest/optest9.txt build/recomp/selftest/optest7.txt \
     build/vectors/arm9.txt build/vectors/arm7.txt build/vectors/ov0.txt
 ```
+
+## Across overlays (session 3)
+
+Playing into the battles met code that one overlay reaches only through
+another: overlay 4 (the battle) calling functions of overlay 1, its
+vtables holding veneers into overlay 1 and methods inherited from
+classes overlay 1 defines. Each overlay is now discovered again with the
+targets the other overlays' runs found in its area (their direct calls,
+and the pointers in their data and literal pools), each taken only where
+it starts as a function would and walks clean; and a run knows the areas
+of the overlays it cannot see, so a vtable neighbour or a veneer's target
+there counts. Overlay 1 gained 24 functions, overlay 4 8.
+
+The self-test with the battle's overlays:
+
+| Vectors | Functions | Vectors | Failures |
+|---|---|---|---|
+| as in session 2 (instruction test, program, ARM7, overlay 0) | 10 040 | 100 994 | 0 |
+| overlay 1's | 836 | 13 184 | 0 |
+| overlay 4's | 76 | 1 215 | 0 |
+| **total** | **10 952** | **115 393** | **0** |

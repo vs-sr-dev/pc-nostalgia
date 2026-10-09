@@ -44,3 +44,12 @@ toon in the renderer.
 | `3b94035` | the resident overlay checked by 64 sampled words, the full crc32 only when one differs; a call whose target is not the cached resident's entry checks the slot again | a run without the epoch follows the game's three changes; the route and the self-test unchanged; pc-moon unchanged |
 
 pc-moon's submodule is at `3b94035`, recorded in its `10-ndskit.md`.
+
+## Session 3
+
+| Commit | What | Checked by |
+|---|---|---|
+| `1560296` | discovery across overlays: foreign targets (calls and data pointers from other overlays' runs, taken where they start as a function would and walk clean), the areas of overlays not loaded (a vtable neighbour, a veneer's target), any unconditional transfer ending a function, a pool of up to four loaded words after it as a boundary, a prologue after such a pool | the four cartridges, both CPUs: 0 conflicts, no function lost or split; this game through three battles and its prologue; pc-moon unchanged |
+| `01da2cf` | display capture; shadow polygons through the stencil; the save written on a fatal stop | this game's pre-battle transition and dungeon shadows, played; pc-moon: build, 81 555 vectors, 74 bytes, its route and its pictures |
+
+pc-moon's submodule is at `01da2cf`.

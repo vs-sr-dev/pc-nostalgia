@@ -91,3 +91,24 @@ Headless, about 1.1 ms a frame: 2 682 frames in 2.9 s, 15 times the DS
 (Moon runs at about 210). Not the overlays (fewer than 500 checks of a
 slot along the title's 2 682 frames); where the time goes is still to
 measure (`05-open-questions.md`). In a window a frame has 16.7 ms.
+
+## Played (session 3)
+
+The user played from a new cartridge through the first dungeon, three
+battles and the prologue's end to the first cutscene with Edward: 20 068
+frames (5 min 35 s) in the window at 120 Hz with the vertical sync, the
+sound never dry. The first slot alternates between overlay 0 (the field)
+and overlay 1 (the battles, and the title), overlay 4 in the second slot
+from the first battle on; every change recognised by the runtime.
+
+* **Display capture** (ndskit's `gpu2d.cpp`): the battles open with a
+  transition built on a capture of the screen, garbage until this
+  session. The frame after DISPCAPCNT's enable bit is captured at its end
+  into the bank it names, the 3D read back from the renderer at the DS's
+  resolution (so at 256x192 even when the window draws the 3D larger:
+  `06-attack-plan.md`, a better Nostalgia).
+* **Shadow polygons** through the stencil: the dungeon's shadows. The
+  DS's rule that a shadow skips pixels of its own polygon ID is not
+  followed yet.
+* The polygon or vertex list filled once (frame 9 647): polygons dropped,
+  as the DS drops them.

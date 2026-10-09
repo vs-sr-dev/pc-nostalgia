@@ -24,8 +24,8 @@ decrypted, placed in the repository's root or in `rom/`.
 
 ## Playing it
 
-Early days: it boots, plays its title and walks into the first dungeon;
-what lies further is untried. You need Python 3, and to build: clang,
+Early days: played from a new cartridge through the first dungeon,
+three battles and the prologue's end; what lies further is untried. You need Python 3, and to build: clang,
 CMake, Ninja and SDL3 (on Windows, MSYS2's `mingw-w64-x86_64` packages),
 and a GPU with OpenGL 4.5. From the repository's root, with your
 cartridge in `rom/`:
@@ -103,6 +103,11 @@ overlays changing hands as the game loads them; against melonDS at the
 same frame, 2 112 bytes of 4 MiB of main RAM differ, most of them the
 sound sequencer's state. The self-test: 100 994 vectors, no failure
 (`docs/09-recompiler.md`, `docs/11-runtime.md`).
+
+Session 3: played in the window through the battles and the prologue to
+the first cutscene with Edward, 20 068 frames without a stop; the four
+stops met on the way taught ndskit's discovery to work across overlays,
+and the runtime drew the display capture and the shadow polygons.
 
 ## Documentation
 

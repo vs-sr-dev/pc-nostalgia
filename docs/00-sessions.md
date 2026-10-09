@@ -82,3 +82,28 @@
 * ndskit's commits checked on pc-moon each time (its build, 81 555
   vectors with no failure, 74 bytes at frame 464, its route into the
   first room) and by discovery on the other two cartridges.
+
+## Session 3 (2026-10-09) — played: battles, the prologue, Edward
+
+* **The user played it** in the window (`ndsrun --window`), from a new
+  cartridge through the first dungeon, three battles and the end of the
+  prologue to the first cutscene with Edward, the real protagonist: 20 068
+  frames without a stop, "nothing to report". Four stops on the way there,
+  each one fixed in ndskit:
+  * the battle's load: the battle's overlay (4) calls the overlay of the
+    first slot (1) directly, at a function nothing in overlay 1 calls;
+  * the battle's start: a table of three tiny functions in overlay 4,
+    after a veneer's literal pool;
+  * choosing a target after "Attack": veneers in overlay 4's vtables,
+    jumping into overlay 1 (classes inheriting methods across overlays);
+  * the battle's end: a function opening with a prologue right after a
+    veneer's literal pool.
+  Discovery now works across overlays (`09-recompiler.md`).
+* **Display capture** (the pre-battle transition, garbage before) and
+  **shadow polygons** (the dungeon's shadows) drawn by ndskit's runtime
+  (`11-runtime.md`); a fatal stop now writes the save too.
+* **Which overlay is which**, as the play showed: overlay 1 holds the
+  title and the battles (with overlay 4 in the second slot), overlay 0
+  the field; overlays 0 and 1 alternate at each battle.
+* The self-test: 115 393 vectors, no failure, overlays 0, 1 and 4
+  included.

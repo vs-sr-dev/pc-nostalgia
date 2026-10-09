@@ -66,9 +66,9 @@ found in memory):
 | the title's menu (VBlank 2 680) | overlay 1 (99.55%) | none (the best, overlay 5, 19%) |
 | the opening scene, the first dungeon (VBlanks 3 220-8 890) | overlay 0 (99.95%) | none |
 
-So overlay 1 is the title, overlay 0 the game in the field (*inferred*
-from these two moments); overlay 2 and the second slot's ten wait for the
-battles, the airship, the menus.
+So overlay 0 is the field; overlay 1 the title and, with overlay 4 in
+the second slot, the battles (seen in play, session 3); overlay 2 and the
+second slot's other nine wait for the airship, the menus, the towns.
 
 ## File system
 
