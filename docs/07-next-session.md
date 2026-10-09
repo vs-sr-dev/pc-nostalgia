@@ -20,11 +20,9 @@ order:
    in melonDS's states).
 4. **Speed**: headless 15 times the DS where Moon runs 210; where does the
    time go.
-5. **Publication**: the rule is a kit proven on two games, Nostalgia
-   working "until proven otherwise". When the user judges it there, the
-   three repositories (ndskit, pc-moon, pc-nostalgia) are swept (no
-   cartridge content in any history, a clean recursive clone builds and
-   runs) and created and pushed by the user, together.
+5. **Published** (once the user has pushed): ndskit, pc-moon and
+   pc-nostalgia on GitHub; later changes keep the same flow (the kit's
+   commits checked on both ports, then the submodules bumped).
 6. Then phase 7 for both games: the PC versions (the screens' layout,
    the frame rate, the capture at the 3D's resolution, controls).
 

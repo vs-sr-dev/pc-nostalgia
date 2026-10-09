@@ -107,3 +107,11 @@
   the field; overlays 0 and 1 alternate at each battle.
 * The self-test: 115 393 vectors, no failure, overlays 0, 1 and 4
   included.
+* **Ready to publish**: the user judged Nostalgia working "until proven
+  otherwise" (the picture, the sound and the gameplay loop as far as
+  anyone knows), so ndskit is proven on two games. The three
+  repositories swept (every blob of every history is source or text, the
+  largest 52 KB; no cartridge content), each port with its
+  `.recomp.json`, ndskit's README with both games in its ports table; a
+  clean recursive clone of each port builds and runs. Created and pushed
+  by the user, together.

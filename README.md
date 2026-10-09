@@ -9,7 +9,7 @@ programs are to be recompiled statically to C++ and run on a runtime
 that replaces the DS's hardware, the 3D drawn by the PC's GPU at the
 window's resolution.
 
-It is the second game of **ndskit**, the game-agnostic DS toolkit born
+It is the second game of [ndskit](https://github.com/vs-sr-dev/ndskit), the game-agnostic DS toolkit born
 with [pc-moon](https://github.com/vs-sr-dev/pc-moon); ndskit is a git
 submodule at `ndskit/`: clone with `--recursive` (or run `git submodule
 update --init` after a clone).
