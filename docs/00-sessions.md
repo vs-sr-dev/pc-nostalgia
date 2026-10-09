@@ -47,3 +47,38 @@
   ARM7, ADPCM, PSG and noise, display capture and the 3D's extra
   features; on PC the 3D at the screen's resolution (the capture too),
   30 steady then 60 by interpolation, the screens' layout.
+
+## Session 2 (2026-10-09) — overlays recompiled and dispatched; into the first dungeon
+
+* **The recompiler and overlays** (`09-recompiler.md`): one module for
+  the ARM9's program, one per overlay (13 with code), one for the ARM7;
+  each overlay discovered with the program loaded and calling its
+  functions directly; the program's module with every function only
+  overlays reach (5 270). 42 MB of C++, built by clang without a warning.
+* **The runtime and overlays** (`11-runtime.md`): an address in an
+  overlay's area looked up in the resident overlay's module, recognised
+  by its code's crc32, checked again by sampled words when the cartridge
+  has delivered data, and by the first instruction of every dispatched
+  call; either check alone follows the game.
+* **Nostalgia runs**: from a new cartridge, through the logos and the
+  title, "New Game", the opening in 3D, into the Tower of Babel's 5F,
+  the first slot changing hands three times (overlay 0, 1, then 0).
+  Against melonDS: at the title 1 458 bytes of 4 MiB of main RAM differ,
+  in the dungeon (frame 8 361) 2 112, most of them the sound sequencer's
+  state; the ITCM and the shared WRAM not at all. The pictures as
+  melonDS's.
+* **Three more forms in discovery**, met running the game: C++'s
+  pointers to member functions (records of two or three words), tables
+  of tiny methods none of them known, a method filling a gap between two
+  functions; and a return's literal pool as a function's end.
+* **The self-test**: 100 994 vectors, no failure: the instruction test,
+  2 017 of the program's functions, 172 of the ARM7's, 559 of overlay
+  0's through the overlay dispatch.
+* **The save**: a 512 Kbit EEPROM needs `ndsrun --save-size 65536` for a
+  new cartridge (new in ndskit); the game formats it as on melonDS (4
+  bytes apart).
+* **Met, not done**: shadow polygons in the dungeon (not drawn yet);
+  headless speed 15 times the DS (Moon's 210), its cause not measured.
+* ndskit's commits checked on pc-moon each time (its build, 81 555
+  vectors with no failure, 74 bytes at frame 464, its route into the
+  first room) and by discovery on the other two cartridges.

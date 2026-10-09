@@ -33,3 +33,14 @@ in the recompiler and the runtime, the SDK's functions named by
 signature (`FS_StartOverlay`), a fingerprint of the ARM7 components; the
 sound unit's ADPCM, PSG and noise checked; display capture, edge marking,
 toon in the renderer.
+
+## Session 2
+
+| Commit | What | Checked by |
+|---|---|---|
+| `ddc2f63` | discovery of C++'s tiny methods: pointers to member functions (a table neighbour 8 or 12 bytes away past small words), candidates with a boundary and a clean descent counting for each other, a function filling a gap, a return's literal pool as a function's end | the four cartridges, both CPUs: 0 conflicts; the functions added all getters, setters, empty callbacks (Moon's ARM9 6 580 to 6 613, its ARM7 943 to 944; a 2010 cartridge's protection-region setters); the three this game called |
+| `31bf132` | overlays in the recompiler (a module per overlay, discovered with the program, calling its functions directly by name; the program's module with what only overlays reach) and the runtime (the resident overlay by its code's crc32, checked again after the cartridge's data and at each dispatched call; segments with a kind); `selftest --overlay` | Nostalgia from a new cartridge into its first dungeon, three changes of overlay; 100 994 vectors, no failure; pc-moon: build, 81 555 vectors, 74 bytes at frame 464, its route |
+| `c814b02` | `ndsrun --save-size`: the backup memory's size for a new cartridge | Nostalgia's 512 Kbit EEPROM formatted as on melonDS (4 bytes apart); pc-moon unchanged |
+| `3b94035` | the resident overlay checked by 64 sampled words, the full crc32 only when one differs; a call whose target is not the cached resident's entry checks the slot again | a run without the epoch follows the game's three changes; the route and the self-test unchanged; pc-moon unchanged |
+
+pc-moon's submodule is at `3b94035`, recorded in its `10-ndskit.md`.

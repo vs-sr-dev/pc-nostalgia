@@ -87,8 +87,8 @@ the map) is to see in play.
 | Phase | What | Done when |
 |---|---|---|
 | 1. Recognise (session 1) | the cartridge, the formats, the code, the oracle, this plan; ndskit split out, with overlays in discovery | this document |
-| 2. Recompile | the program and each overlay as modules, the overlay dispatch; the ARM7 recompiled; the self-test with vectors of this game's functions | everything compiles and links; the self-test has no difference |
-| 3. Runtime | the machine boots Nostalgia headless: the overlays loaded and dispatched, the save (512 Kbit EEPROM), the route from boot to the first dungeon by a script of presses | its memories at the title and in the dungeon against melonDS's states at the same VBlank count |
+| 2. Recompile (session 2) | the program and each overlay as modules, the overlay dispatch; the ARM7 recompiled; the self-test with vectors of this game's functions | everything compiles and links; the self-test has no difference (`09-recompiler.md`: 100 994 vectors) |
+| 3. Runtime (session 2) | the machine boots Nostalgia headless: the overlays loaded and dispatched, the save (512 Kbit EEPROM), the route from boot to the first dungeon by a script of presses | its memories at the title and in the dungeon against melonDS's states at the same VBlank count (`11-runtime.md`: 1 458 and 2 112 bytes of main RAM) |
 | 4. Picture | the title, the opening and the dungeon drawn; display capture, fog, edge marking and toon as the game uses them | the pictures against melonDS's at the same frames; the user's eyes |
 | 5. Sound | ADPCM, PSG and noise against melonDS | the channels' registers equal at the same frames; the user's ears |
 | 6. Publication | ndskit proven on two games: the three repositories created and pushed together (by the user) | Nostalgia works "until proven otherwise" |

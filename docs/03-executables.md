@@ -74,6 +74,11 @@ edge marking and toon shading.
 
 ## Function discovery against Ghidra
 
+The numbers below are session 1's. Session 2 taught discovery three
+forms of C++'s tiny methods, met running the game: the program alone has
+4 907 functions now, with what its overlays reach 5 270, overlay 0 1 824
+(`09-recompiler.md`).
+
 | Program | Functions | Thumb | Switches | Conflicts |
 |---|---|---|---|---|
 | ARM9 alone | 4 899 | 31 | 94 (1 143 targets) | 0 |

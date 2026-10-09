@@ -1,36 +1,37 @@
-# Next session: the recompiler with overlays (phase 2)
+# Next session: playing it, the picture and the sound (phases 4-5)
 
-Session 1 read the cartridge and the code and wrote the plan
-(`06-attack-plan.md`). ndskit is its own repository now, a submodule
-here and in pc-moon; discovery reads overlays. Next, phase 2: everything
-compiled and linked, and checked by the self-test.
+Phases 2 and 3 are done as far as the route goes (`09-recompiler.md`,
+`11-runtime.md`): the programs and the overlays recompiled, the
+self-test clean, the game booting from a new cartridge into its first
+dungeon with its memories close to melonDS's. Next:
 
-1. **The recompiler and overlays** (ndskit, `recomp.emit` and
-   `python -m ndskit.recomp`): one module per overlay, emitted with the
-   program's functions as known entries (calls out of an overlay are
-   ordinary calls); the program's module with the functions only
-   overlays reach (`--overlay all`'s `main` list). Calls from the
-   program into an overlay's region go through the runtime's dispatch,
-   which picks the resident overlay's module. The modules' names carry
-   the overlay's id and crc32.
-2. **The resident overlay** (ndskit's runtime): a slot's owner set when
-   the SDK's `FS_StartOverlay` runs (found by signature, 0x0200CBF0 here;
-   its entry's first word is the id), with a check of the slot's crc32
-   against the module's on the first call, so a wrong guess is loud.
-   Before that: read the 117 direct calls (which overlays have a
-   function at each target).
-3. **The ARM7**: recompiled as Moon's; its crc32 named in a
-   `fingerprint` table of the SDK's components (layer 1).
-4. **The self-test**: the instruction test of both CPUs, and vectors
-   from this game's functions that run alone (`recomp.selftest --auto`;
-   with overlays, from each overlay's module too).
-5. Then phase 3 can start: `ndsrun` booting Nostalgia, the title against
-   `build/oracle/title.ml1` (VBlank 2 680), overlay 1 resident.
+1. **The user plays it**: `ndsrun --window --save-size 65536 --out
+   build/play` (the README's "Playing it"), as far as it goes. Every
+   stop is a lesson for the kit (a call to a non-entry: discovery; a
+   wrong return; a register not done). In particular the overlays not
+   met yet: overlay 2 and the second slot's ten (battles, the airship,
+   menus?), each loading should print `the overlay area ... holds`.
+2. **Shadow polygons** (ndskit's renderer): the dungeon's shadows, the
+   DS's stencil rules (a mask pass with polygon ID 0, then the shadow
+   polygons drawn where the mask is set and the ID differs). Then what
+   else the field turns on: display capture (overlay 0 holds DISPCAPCNT's
+   address), edge marking, toon; read DISP3DCNT in melonDS's states and
+   in the runtime.
+3. **The sound** against melonDS: IMA-ADPCM on all 16 channels in the
+   dungeon, then the PSG and noise programs of the effects' banks (138
+   and 19): the channels' registers at the same frames
+   (`melonds --compare` lists both), then the user's ears.
+4. **Speed**: headless 15 times the DS where Moon runs 210; find where
+   the time goes (a thread busy-waiting where Moon's halt? the cost per
+   safe point?) before the window's 60 Hz pacing hides it.
+5. A longer route for the oracle and the runtime: the first battle, the
+   airship (each with savestates and `melonds --overlays`), so the
+   comparisons follow the game past the dungeon.
 
-Each ndskit change checked on pc-moon (its check: build, 81 555 vectors,
-74 bytes at frame 464) and discovery on the other two cartridges, as
-`10-ndskit.md` says.
+Each ndskit change checked on pc-moon (`10-ndskit.md`) and by discovery
+on the other two cartridges.
 
-Before starting: MSYS2's tools on PATH (`/c/msys64/mingw64/bin`);
-`git submodule update --init` after a clone; the cartridge in `rom/`.
-The oracle's route is in `06-attack-plan.md`.
+Before starting: MSYS2's tools on PATH (`/c/msys64/mingw64/bin`, also
+SDL3.dll at run time); `git submodule update --init` after a clone; the
+cartridge in `rom/`; the build as in `09-recompiler.md` (about four
+minutes from nothing); `--save-size 65536` for a new cartridge.

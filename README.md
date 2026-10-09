@@ -22,6 +22,29 @@ is done on the North American release, `Nostalgia (USA).nds` (game code
 CJKE, version 0, NitroSDK 4.2), a 128 MiB image with its secure area
 decrypted, placed in the repository's root or in `rom/`.
 
+## Playing it
+
+Early days: it boots, plays its title and walks into the first dungeon;
+what lies further is untried. You need Python 3, and to build: clang,
+CMake, Ninja and SDL3 (on Windows, MSYS2's `mingw-w64-x86_64` packages),
+and a GPU with OpenGL 4.5. From the repository's root, with your
+cartridge in `rom/`:
+
+```sh
+ROM="rom/Nostalgia (USA).nds"
+export PATH=/c/msys64/mingw64/bin:$PATH       # Windows: MSYS2's tools, and SDL3.dll at run time
+python -m ndskit.recomp "$ROM" --out build/recomp                    # about 3 minutes
+cmake -S build/recomp -B build/recomp/b -G Ninja -DCMAKE_CXX_COMPILER=clang++
+ninja -C build/recomp/b                                              # about a minute
+build/recomp/b/ndsrun "$ROM" --window --save-size 65536 --out build/play
+```
+
+The save (a 512 Kbit EEPROM, hence `--save-size` for a new one) is kept
+in `build/play`. The keys are melonDS's defaults: X, Z, S, A for A, B,
+X, Y; Q, W for L, R; Enter and Backspace for START and SELECT; the arrows
+for the D-pad; the left mouse button on the lower screen for the stylus;
+F12 a picture; Escape quits (the save is written).
+
 ## Layout
 
     docs/            cartridge, format and code analysis, and the plan
@@ -72,6 +95,15 @@ all of Ghidra's that can run), the frame rate measured (30), the oracle
 driven into the first dungeon, and the plan: Moon's road, with overlays
 as modules (`docs/06-attack-plan.md`).
 
+Session 2: the recompiler and the runtime learnt overlays (a module per
+overlay; the one resident in each load area recognised by its code and
+checked as memory changes). Nostalgia runs on ndskit's machine from a new
+cartridge through its title and opening into its first dungeon, the
+overlays changing hands as the game loads them; against melonDS at the
+same frame, 2 112 bytes of 4 MiB of main RAM differ, most of them the
+sound sequencer's state. The self-test: 100 994 vectors, no failure
+(`docs/09-recompiler.md`, `docs/11-runtime.md`).
+
 ## Documentation
 
 * [00-sessions.md](docs/00-sessions.md) — what each session did
@@ -82,6 +114,8 @@ as modules (`docs/06-attack-plan.md`).
 * [05-open-questions.md](docs/05-open-questions.md) — what is not known yet
 * [06-attack-plan.md](docs/06-attack-plan.md) — what is new against Moon, a better Nostalgia on PC, the phases, the oracle's route
 * [07-next-session.md](docs/07-next-session.md) — the next session's list
+* [09-recompiler.md](docs/09-recompiler.md) — the program, its overlays and the ARM7 to C++, the self-test
+* [11-runtime.md](docs/11-runtime.md) — overlays at run time, the save, the route against melonDS
 * [10-ndskit.md](docs/10-ndskit.md) — what this port gave ndskit
 
 ## Licence
