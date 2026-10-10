@@ -68,5 +68,6 @@ melonDS):
 | `6eda9f5` | the self-test checks the overlay slots again after loading an image | the whole self-test in one command: 115 393 vectors, no failure (with the kit as published, the same command stopped overlay 1's file at its first function: 17 failures, overlay 0's code run in its place) |
 | `08ba0d2` | an ARM interpreter in the runtime (code no module holds, functions the emitter cannot take; the self-test's `--interp`); overlays told apart function by function (each function's bytes checked against its module, stores marking the pages they write: the slots, the cartridge's epoch and the samples gone); a compressed program's stored image as a segment; the emitter's Thumb `add pc, rB` read unaligned; discovery's pushed-constant `pop {pc}` as a jump; `--auto` keeps only vectors that run discovered code; display capture from engine A's graphics; VRAM in the run's dump | discovery unchanged, program, ARM7 and every overlay; the whole self-test, 115 425 vectors, no failure, recompiled and interpreted; the route into the first dungeon, 2 047 bytes apart from melonDS's state as before |
 | `720c636` | the overlay log tells each change of hands | the route's log: overlays 0, 1, and 0 again at frame 2 792 |
+| `5ee24af` | the README with its third game (pc-lufiacots in the ports table; the layers, checks and known gaps brought up to date) | - (the README only) |
 
-The submodule is at `720c636`, as pc-moon's.
+The submodule is at `5ee24af`, as pc-moon's, the kit as published with pc-lufiacots.
