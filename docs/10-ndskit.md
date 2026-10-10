@@ -53,3 +53,18 @@ pc-moon's submodule is at `3b94035`, recorded in its `10-ndskit.md`.
 | `01da2cf` | display capture; shadow polygons through the stencil; the save written on a fatal stop | this game's pre-battle transition and dungeon shadows, played; pc-moon: build, 81 555 vectors, 74 bytes, its route and its pictures |
 
 pc-moon's submodule is at `01da2cf`.
+
+## From pc-lufiacots
+
+Changes of the kit made for the third game, Lufia: Curse of the
+Sinistrals, each checked here before it was taken (the build from the
+recompiler, the self-test, the route into the first dungeon against
+melonDS):
+
+| Commit | What | Here |
+|---|---|---|
+| `b2c3fd6` | `lz`: the BIOS's Huffman (4- and 8-bit units) | - (this game's archives use LZ77 and LZ11) |
+| `49a3de7` | discovery: CodeWarrior's Thumb switches, a newer ARM7's halfword tables, Thumb's `bl` as a long branch (walked as a `b`, emitted as a goto or a tail call), Thumb's return through a popped register, a conditional `movne lr, pc` call, a jump into code unrolled by two instructions, a guessed entry refused when its descent meets data | this game's discovery unchanged, program, ARM7 and every overlay (the lists identical); the build; the route from a new cartridge into the Tower of Babel with the same three changes of overlay, 2 047 bytes of main RAM apart from melonDS's state |
+| `6eda9f5` | the self-test checks the overlay slots again after loading an image | the whole self-test in one command: 115 393 vectors, no failure (with the kit as published, the same command stopped overlay 1's file at its first function: 17 failures, overlay 0's code run in its place) |
+
+The submodule is at `6eda9f5`, as pc-moon's.
