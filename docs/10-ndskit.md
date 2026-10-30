@@ -80,5 +80,6 @@ Wings, each checked here as above before it was taken:
 | Commit | What | Here |
 |---|---|---|
 | `ad61a11` | a thread switch takes the rest of the CPU's quantum: the other CPU runs before the woken thread (the fourth game's frame start read the ARM7's VBlank count before the ARM7 had stored it, and ran at 60 frames a second instead of 30) | the whole self-test, 115 425 vectors, no failure, recompiled and interpreted; the route into the first dungeon, overlays 0, 1 and 0 again at 2 792, 1 973 bytes of main RAM apart from melonDS's state (2 047 before) |
+| `234b110` | the README with its fourth game: pc-finalfantasy12revenantwings in the ports table, the thread switch's rule, its checks and gaps | a README only: nothing to build |
 
-The submodule is at `ad61a11`.
+The submodule is at `234b110`.
